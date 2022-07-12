@@ -1,0 +1,5 @@
+pandas==1.4.3
+pandastable==0.13.0
+tkcalendar==1.6.1
+openpyxl==3.0.10
+cx-Freeze==6.11.1
