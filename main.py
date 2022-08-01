@@ -144,7 +144,7 @@ def cadastro_interface():
     Label(
         frame,
         text='Nome:',
-        font=("Times", "14")
+        font=("Times", "16", "bold")
     ).grid(row=3, column=0, pady=5)
 
     nome_e = Entry(frame, width=30)
@@ -153,7 +153,7 @@ def cadastro_interface():
     Label(
         frame,
         text='CPF:',
-        font=("Times", "14")
+        font=("Times", "16", "bold")
     ).grid(row=4, column=0, pady=5)
 
     cpf_e = Entry(frame, width=30)
@@ -163,7 +163,7 @@ def cadastro_interface():
     button_cadastro["state"] = DISABLED
 
     button_cadastrar = Button(frame, text="Cadastrar", padx=20, pady=10,
-                              relief=SOLID, command=cadastrar, font=("Times", "14", "bold"))
+                              relief=SOLID, command=cadastrar, font=("Times", "16", "bold"))
     button_cadastrar.grid(row=6, column=2, pady=20)
 
 
@@ -268,49 +268,49 @@ def registro_interface():
     Label(
         frame_add,
         text='Nome',
-        font=("Times", "14")
+        font=("Times", "16", "bold")
     ).grid(row=1, column=0, pady=5)
 
     Label(
         frame_add,
         text='CPF',
-        font=("Times", "14")
+        font=("Times", "16", "bold")
     ).grid(row=2, column=0, pady=5)
 
     Label(
         frame_add,
         text='RG',
-        font=("Times", "14")
+        font=("Times", "16", "bold")
     ).grid(row=3, column=0, pady=5)
 
     Label(
         frame_add,
         text='Descrição do Bem',
-        font=("Times", "14")
+        font=("Times", "16", "bold")
     ).grid(row=4, column=0, pady=5)
 
     Label(
         frame_add,
         text='Tombamento',
-        font=("Times", "14")
+        font=("Times", "16", "bold")
     ).grid(row=5, column=0, pady=5)
 
     Label(
         frame_add,
         text='Data de Entrega',
-        font=("Times", "14")
+        font=("Times", "16", "bold")
     ).grid(row=6, column=0, pady=5)
 
     Label(
         frame_add,
         text='Reparado?',
-        font=("Times", "14")
+        font=("Times", "16", "bold")
     ).grid(row=7, column=0, pady=5)
 
     Label(
         frame_add,
         text='Descrição do Serviço',
-        font=("Times", "14")
+        font=("Times", "16", "bold")
     ).grid(row=8, column=0, pady=5)
 
     nome_r = Entry(frame_add, width=30)
@@ -335,7 +335,7 @@ def registro_interface():
     desc_serv.grid(row=8, column=1)
 
     button_concluir = Button(frame_add, text="Concluir", padx=20, pady=10,
-                             relief=SOLID, command=add_registro, font=("Times", "14", "bold"))
+                             relief=SOLID, command=add_registro, font=("Times", "16", "bold"))
     button_concluir.grid(row=9, column=1, pady=20)
 
 
@@ -350,20 +350,30 @@ def menu():
     frame_menu = Frame(window_menu, padx=20, pady=20)
     frame_menu.pack(expand=True)
 
+    cursor = conn.cursor()
+    nome_entregador = cursor.execute(
+        f"SELECT Nome FROM Entregadores WHERE Matrícula = {matricula_entregador}").fetchone()
+
+    Label(
+        frame_menu,
+        text=f'Entregador: {nome_entregador[0]}',
+        font=("Times", "25", "bold")
+    ).grid(row=0, column=2, pady=20)
+
     button_tabela = Button(frame_menu, text="Tabela de Recebedores", padx=20, pady=10,
-                           relief=SOLID, command=abrir_tabela, font=("Times", "14", "bold"))
+                           relief=SOLID, command=abrir_tabela, font=("Times", "18", "bold"))
     button_tabela.grid(row=2, column=2, pady=20)
 
     button_excel = Button(frame_menu, text="Exportar para Excel", padx=20, pady=10,
-                          relief=SOLID, command=exportar_excel_interface, font=("Times", "14", "bold"))
+                          relief=SOLID, command=exportar_excel_interface, font=("Times", "18", "bold"))
     button_excel.grid(row=3, column=2, pady=20)
 
     button_add = Button(frame_menu, text="Adicionar Registro", padx=20, pady=10,
-                        relief=SOLID, command=registro_interface, font=("Times", "14", "bold"))
+                        relief=SOLID, command=registro_interface, font=("Times", "18", "bold"))
     button_add.grid(row=4, column=2, pady=20)
 
     button_deslogar = Button(frame_menu, text="Logout", padx=20, pady=10,
-                             relief=SOLID, command=logout, font=("Times", "14", "bold"))
+                             relief=SOLID, command=logout, font=("Times", "18", "bold"))
     button_deslogar.grid(row=5, column=2, pady=20)
 
 
@@ -405,18 +415,18 @@ def tela_inicial():
         frame,
         text="Entregador",
         font=("Times", "24", "bold")
-    ).grid(row=0, columnspan=3, pady=10)
+    ).grid(row=0, column=0, columnspan=3, pady=10)
 
     Label(
         frame,
         text='Matrícula:',
-        font=("Times", "14")
+        font=("Times", "16", "bold")
     ).grid(row=1, column=0, pady=5)
 
     Label(
         frame,
         text='Senha:',
-        font=("Times", "14")
+        font=("Times", "16", "bold")
     ).grid(row=2, column=0, pady=5)
 
     matricula_e = Entry(frame, width=30)
@@ -426,11 +436,11 @@ def tela_inicial():
     senha_e.grid(row=2, column=1)
 
     button_login = Button(frame, text="Login", padx=20, pady=10,
-                          relief=SOLID, command=login, font=("Times", "14", "bold"))
+                          relief=SOLID, command=login, font=("Times", "16", "bold"))
     button_login.grid(row=6, column=0, pady=20)
 
     button_cadastro = Button(frame, text="Cadastro", padx=20, pady=10,
-                             relief=SOLID, command=cadastro_interface, font=("Times", "14", "bold"))
+                             relief=SOLID, command=cadastro_interface, font=("Times", "16", "bold"))
     button_cadastro.grid(row=6, column=2, pady=20)
 
 
